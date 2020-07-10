@@ -7,11 +7,11 @@ command -v g++ >/dev/null 2>&1 || {
 }
 
 usage(){
-	cat <<EOF
-	Usage: runcpp [arguments if any] <file.cpp>
-	Arguments:
-   		-h  or  --help	Print Help and exit
-	EOF
+cat <<EOF
+Usage: runcpp [arguments if any] <file.cpp>
+Arguments:
+   	-h  or  --help	Print Help and exit
+EOF
 }
 
 # read args
@@ -20,18 +20,27 @@ case $1 in
 		usage
 		exit
 		;;
-	*) filepath=$1
+	*) filePath=$1
 		;;
 esac
 
-filename="$(basename $filepath)"
-filenameWithoutExtension="$(basename $filepath .cpp)"
-extension="${filename#*.}"
+fileName="$(basename $filePath)"
+fileNameWithoutExtension="$(basename $filePath .cpp)"
+extension="${fileName#*.}"
+objectFile="${fileNameWithoutExtension}.o"
 
 if [  "$extension" != "cpp" ]; then
 	usage
 	exit
 fi
 
+if [ ! -d "compiledFiles" ]; then
+	echo "Compiled code will be moved to compiledFiles folder."
+	mkdir compiledFiles
+fi
+
 # compile and execute
-# g++ -std=c++14 -Wshadow -Wall -o "%e" "%filepath" -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG
+g++ -std=c++14 -Wshadow -Wall "$filePath" -o "$objectFile" -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG
+./"$objectFile"
+
+mv "$objectFile" compiledFiles
