@@ -2,7 +2,7 @@
 
 # Check if g++ exists
 command -v g++ >/dev/null 2>&1 || {
-    echo >&2 "g++ is not installed. Please run sudo apt install g++";
+    echo >&2 "g++ is not installed. Install by running sudo apt install g++";
     exit 1;
 }
 
@@ -40,7 +40,7 @@ if [ ! -d "compiledFiles" ]; then
 fi
 
 # compile and execute
-g++ -std=c++14 -Wshadow -Wall "$filePath" -o "$objectFile" -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG
+g++ -std=c++17 -Wshadow -Wall "$filePath" -o "$objectFile" -g -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG
 ./"$objectFile"
 
 mv "$objectFile" compiledFiles
