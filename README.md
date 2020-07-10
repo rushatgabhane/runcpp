@@ -9,5 +9,5 @@ $ bash init.sh
 
 # Usage
 ```sh
-$ runcpp [arguments] <file.cpp>
+$ runcpp [arguments if any] <file.cpp>
 ```
