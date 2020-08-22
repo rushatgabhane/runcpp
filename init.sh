@@ -17,6 +17,5 @@ source ~/.bashrc
 chmod +x runcpp.sh
 cp runcpp.sh ~/.local/bin/runcpp
 
-echo "Done!"
-echo "Restart the terminal for changes to take effect."
-echo "Then, try the command runcpp."
+echo "Done! Restart the terminal for changes to take effect."
+echo "Usage: runcpp <file.cpp>"
