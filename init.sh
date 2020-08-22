@@ -8,11 +8,11 @@ if [ ! -d ~/.local/bin ]; then
 	mkdir ~/.local/bin
 fi
 
-if ! grep 'PATH=.*HOME/.local/bin' ~/.profile
+if ! grep 'PATH=.*HOME/.local/bin' ~/.bashrc
 then
-    echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.profile
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
 fi
-source ~/.profile
+source ~/.bashrc
 
 chmod +x runcpp.sh
 cp runcpp.sh ~/.local/bin/runcpp
