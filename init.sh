@@ -11,8 +11,15 @@ fi
 if ! grep 'PATH=.*HOME/.local/bin' ~/.bashrc
 then
     echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+    source ~/.bashrc
 fi
-source ~/.bashrc
+
+if ! grep 'PATH=.*HOME/.local/bin' ~/.zshrc
+then
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
+    source ~/.zshrc
+fi
+
 
 chmod +x runcpp.sh
 cp runcpp.sh ~/.local/bin/runcpp
